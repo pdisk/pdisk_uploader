@@ -75,7 +75,6 @@ async def get_ptitle(url):
     v_id = video_id[0]
     v_len = len(v_id)
     v_id = v_id[1:v_len - 2]
-
     v_url = 'https://www.pdisks.com/share-video?videoid=' + v_id
     res = [str, v_url]
     return res
@@ -105,8 +104,10 @@ async def multi_pdisk_up(ml_string):
     new_ml_string = await remove_username(new_ml_string)
     new_join_str = "".join(new_ml_string)
 
-    urls = re.findall(r'(https?://[^\s]+)', new_join_str)
-
+    urls = re.findall("(?P<url>https?://[^\s]+)", new_join_str)
+    for i in range(len(url)):
+        requests.get(url[i])
+    
     nml_len = len(new_ml_string)
     u_len = len(urls)
     url_index = []
